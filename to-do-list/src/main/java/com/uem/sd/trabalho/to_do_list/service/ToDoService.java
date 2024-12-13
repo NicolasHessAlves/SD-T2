@@ -25,7 +25,6 @@ public class ToDoService {
         if (!userValidation.validateUser(userId))
             throw new EntityNotFoundException("User not found.");
 
-        // Validate userId
         ToDo toDo = toDoRepository.save(new ToDo(null, toDoDTO.description(), userId, false));
 
         userNotification.sendNotification(new NotificationDTO(toDo.getUserId(), toDo.getDescription(), toDo.isDone()));
